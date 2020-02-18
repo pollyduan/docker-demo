@@ -7,6 +7,10 @@
 
 https://hub.docker.com/
 
+### 将github关联到docker hub
+
+在 Docker hub 点击用户名下拉框中的`Account Settings`，进入 `Linked Accounts` ，点击 `Github` 后面的 `Connect` 链接。根据引导输入你的用户名密码和必要信息。
+
 ### 创建github项目
 
 `pollyduan/docker-demo`
@@ -107,6 +111,14 @@ git push --tags
 docker run -ti --rm pollyduan/docker-demo:1.0 bash /version.sh
 ```
 
+标签版本出现bug怎么办？我们知道latest版本是随时更新的，而tags则是稳定版本，如果发布一定时间后发现bug，只需要在本地删除并重建标签，然后强制推送到远端即可。
+
+```
+git untag 1.0
+git tag 1.0
+git push --tags -f
+```
+
 ### 更新仓库的文档
 
 在github仓库中增加文本文件：`README.md`，内容如下：
@@ -119,4 +131,22 @@ docker-demo
 ```
 
 推送到github即可。
+
+### github私有仓库
+
+如果github仓库是私有仓库，那么docker hub是没有权限拉取Dockerfile的，那么默认创建的build任务无法执行。
+
+这可能是在之前的github关联除了问题，可以断开关联重新创建关联关系。
+
+通常，是github上的公钥不小心删除了，可尝试重新部署公钥。
+
+登录docker仓库，进入对应的仓库，如： https://hub.docker.com/repository/docker/pollyduan/docker-demo
+
+进入 `Builds` 选项，点击 `Configure Automated Builds` 按钮。
+
+在页面下方的 `Deploy Key` 项目中，复制文本框中的公钥。
+
+打开github仓库，进入 `Settings` 选项： https://github.com/pollyduan/docker-demo/settings
+
+点击 `Deploy keys`，并点击 `Add deploy key` 按钮，将前面复制的公钥粘贴到 `Key` 文本框中，点击 `Add Key` 按钮保存即可。
 
