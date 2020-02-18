@@ -1,4 +1,4 @@
-在docker官方仓库自动构建镜像
+如何在docker官方仓库自动构建镜像
 ===
 
 [toc]
@@ -61,7 +61,9 @@ CMD ["bash","-c","/version.sh"]
 
 等待几分钟，也可以去docker仓库中查看是否自动构建完成。
 
-https://hub.docker.com/repository/docker/pollyduan/docker-demo
+已登录账号： https://hub.docker.com/repository/docker/pollyduan/docker-demo
+
+未登录可查看： https://hub.docker.com/r/pollyduan/docker-demo/builds
 
 ```
 Last pushed: a minute ago
@@ -97,10 +99,6 @@ git push --tags
 ```
 
 刷新docker仓库，确认构建生效了。或者耐心等待几分钟。
-
-```
-https://hub.docker.com/repository/docker/pollyduan/docker-demo
-```
 
 测试，这次不需要预先拉取镜像了，直接执行：
 
